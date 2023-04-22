@@ -1,0 +1,36 @@
+[
+    {
+    "name"     : "checkout_container",
+    "image"     : "926837946404.dkr.ecr.us-east-2.amazonaws.com/checkout:latest",
+    "cpu"       : 0,
+    "memory"    : 512,
+    "essential" : true,
+    "portMappings" : [
+      {
+        "containerPort" : 8080,
+        "hostPort"      : 8080
+      }],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+            "awslogs-create-group": "true",
+            "awslogs-group": "/ecs/checkout",
+            "awslogs-region": "us-east-2",
+            "awslogs-stream-prefix": "ecs"
+        }
+    },
+    "environment": [
+        {
+            "name": "REDIS_URL",
+            "value": "redis://cluster-example.j4otfn.0001.use2.cache.amazonaws.com:6379"
+        },
+        
+        {
+          "name": "ENDPOINTS_ORDERS",
+          "value": "http://orders_service.retailapp.dev:8080"
+        }
+
+    ]
+    
+    }
+]

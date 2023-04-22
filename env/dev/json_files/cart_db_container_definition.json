@@ -1,0 +1,26 @@
+[
+    {
+    "name"     : "cart_db_container",
+    "image"     : "amazon/dynamodb-local:latest",
+    "cpu"       : 0,
+    "memory"    : 512,
+    "essential" : true,
+    "portMappings" : [
+      {
+        "containerPort" : 8000,
+        "hostPort"      : 8000
+      }
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+          "awslogs-create-group": "true",
+          "awslogs-group": "/ecs/cart_db",
+          "awslogs-region": "us-east-2",
+          "awslogs-stream-prefix": "ecs"
+      }
+  }
+    
+    
+    }
+]

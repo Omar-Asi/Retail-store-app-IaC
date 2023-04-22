@@ -1,0 +1,26 @@
+[
+    {
+    "name"     : "redis_container",
+    "image"     : "redis:6-alpine",
+    "cpu"       : 0,
+    "memory"    : 512,
+    "essential" : true,
+    "portMappings" : [
+      {
+        "containerPort" : 6379,
+        "hostPort"      : 6379
+      }
+
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+          "awslogs-create-group": "true",
+          "awslogs-group": "/ecs/redis",
+          "awslogs-region": "us-east-2",
+          "awslogs-stream-prefix": "ecs"
+      }
+  }
+    
+    }
+]

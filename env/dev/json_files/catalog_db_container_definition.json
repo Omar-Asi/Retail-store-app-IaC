@@ -1,0 +1,50 @@
+[
+    {
+    "name"     : "catalog_db_container",
+    "image"     : "mariadb:10.9",
+    "cpu"       : 0,
+    "memory"    : 512,
+    "essential" : true,
+    "portMappings" : [
+      {
+        "containerPort" : 8080,
+        "hostPort"      : 8080
+      }],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+            "awslogs-create-group": "true",
+            "awslogs-group": "/ecs/catalog_db",
+            "awslogs-region": "us-east-2",
+            "awslogs-stream-prefix": "ecs"
+        }
+    },
+    "environment": [
+        {
+            "name": "MYSQL_ROOT_PASSWORD",
+            "value": "testing"
+        },
+        
+        {
+          "name": "MYSQL_ALLOW_EMPTY_PASSWORD",
+          "value": "true"
+        },
+
+        {
+          "name": "MYSQL_DATABASE",
+          "value": "sampledb"
+        },
+
+        {
+          "name": "MYSQL_USER",
+          "value": "catalog_user"
+        },
+
+        {
+          "name": "MYSQL_PASSWORD",
+          "value": "testing"
+        }
+      ]
+    
+    }
+]

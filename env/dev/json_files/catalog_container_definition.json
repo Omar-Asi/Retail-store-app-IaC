@@ -1,0 +1,60 @@
+[
+    {
+    "name"     : "catalog_container",
+    "image"     : "926837946404.dkr.ecr.us-east-2.amazonaws.com/catalog:latest",
+    "cpu"       : 0,
+    "memory"    : 512,
+    "essential" : true,
+    "portMappings" : [
+      {
+        "containerPort" : 8080,
+        "hostPort"      : 8080
+      }],
+    "environment": [
+        
+      {
+        "name": "GIN_MODE",
+        "value": "release"
+      },
+      
+        
+        
+        
+        {
+          "name": "DB_USER",
+          "value": "user1"
+        },
+        
+        {
+          "name": "DB_READ_ENDPOINT",
+          "value": "catalog-database.cr6ta4twazcf.us-east-2.rds.amazonaws.com:3306"
+        },
+        {
+          "name": "DB_NAME",
+          "value": "catalogdb"
+      },
+      
+      {
+        "name": "DB_PASSWORD",
+        "value": "passw0rd"
+      },
+      
+      
+      
+      {
+        "name": "DB_ENDPOINT",
+        "value": "catalog-database.cr6ta4twazcf.us-east-2.rds.amazonaws.com:3306"
+      }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+            "awslogs-create-group": "true",
+            "awslogs-group": "/ecs/catalog",
+            "awslogs-region": "us-east-2",
+            "awslogs-stream-prefix": "ecs"
+        }
+    }
+    
+    }
+]

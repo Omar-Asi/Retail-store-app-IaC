@@ -1,0 +1,32 @@
+[
+    {
+    "name"     : "rabbitmq_container",
+    "image"     : "rabbitmq:3-management",
+    "cpu"       : 0,
+    "memory"    : 512,
+    "essential" : true,
+    "portMappings" : [
+      {
+        "containerPort" : 5672,
+        "hostPort"      : 5672
+      },
+      {
+        "containerPort" : 15672,
+        "hostPort"      : 15672
+      }
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+          "awslogs-create-group": "true",
+          "awslogs-group": "/ecs/rabbitmq",
+          "awslogs-region": "us-east-2",
+          "awslogs-stream-prefix": "ecs"
+      }
+  }
+   
+
+    
+    
+    }
+]

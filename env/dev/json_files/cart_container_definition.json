@@ -1,0 +1,32 @@
+[
+    {
+    "name"     : "cart_container",
+    "image"     : "926837946404.dkr.ecr.us-east-2.amazonaws.com/cart:latest",
+    "cpu"       : 0,
+    "memory"    : 512,
+    "essential" : true,
+    "portMappings" : [
+      {
+        "containerPort" : 8080,
+        "hostPort"      : 8080
+      }],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+            "awslogs-create-group": "true",
+            "awslogs-group": "/ecs/cart",
+            "awslogs-region": "us-east-2",
+            "awslogs-stream-prefix": "ecs"
+        }
+    },
+    "environment": [
+        
+        
+        {
+          "name": "CARTS_DYNAMODB_TABLENAME",
+          "value": "GameScores"
+        }
+    ]
+    
+    }
+]

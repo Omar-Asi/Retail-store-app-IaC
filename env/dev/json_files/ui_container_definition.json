@@ -1,0 +1,52 @@
+[
+    {
+    "name"     : "ui_container",
+    "image"     : "926837946404.dkr.ecr.us-east-2.amazonaws.com/ui:latest",
+    
+    "essential" : true,
+    "portMappings" : [
+      {
+        "containerPort" : 8080,
+        "hostPort"      : 8080
+      }],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+            "awslogs-create-group": "true",
+            "awslogs-group": "/ecs/ui",
+            "awslogs-region": "us-east-2",
+            "awslogs-stream-prefix": "ecs"
+        }
+    },
+    "environment": [
+     
+        {
+          "name": "SERVER_TOMCAT_ACCESSLOG_ENABLED",
+          "value": "true"
+        },
+
+        {
+          "name": "JAVA_OPTS",
+          "value": "-XX:MaxRAMPercentage=75.0 -Djava.security.egd=file:/dev/urandom"
+        },
+
+        {
+          "name": "ENDPOINTS_ORDERS",
+          "value": "http://orders_service.retailapp.dev:8080"
+        },
+
+        {
+          "name": "ENDPOINTS_CHECKOUT",
+          "value": "http://checkout_service.retailapp.dev:8080"
+        },
+
+        {
+          "name": "ENDPOINTS_ASSETS",
+          "value": "http://assets_service.retailapp.dev:8080"
+        }
+
+
+    ]
+    
+    }
+]
